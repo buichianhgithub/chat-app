@@ -9,10 +9,10 @@ socket.on('updaterooms', function (rooms, current_room) {
     $('#rooms').empty();
     $.each(rooms, function (key, value) {
         if (value == current_room) {
-            $('#rooms').append('<div style="width:100px; margin-bottom: 10px"   class="btn btn-success">' + value + '</div>');
+            $('#rooms').append('<div style="width:100%; margin-bottom: 10px;font-size:20px;"   class="btn btn-success">' + value + '</div>');
         }
         else {
-            $('#rooms').append('<div><a href="#"  class="btn btn-success"  style="width:100px; margin-bottom: 10px" onclick="switchRoom(\'' + value + '\')">' + value + '</a></div>');
+            $('#rooms').append('<div><a href="#"  class="btn btn-success"  style="width:50%; margin-bottom: 10px" onclick="switchRoom(\'' + value + '\')">' + value + '</a></div>');
         }
     });
 });
@@ -21,6 +21,8 @@ function switchRoom(room) {
     socket.emit('switchRoom', room);
 }
 
+
+$(function () {
 $('#roombutton').click(function () {
     $('#roomname').show();
 
@@ -32,7 +34,7 @@ $('#roombutton').click(function () {
 
     }
 });
-
+});
 
 // on load of page
 $(function () {
@@ -68,11 +70,9 @@ jQuery(function ($) {
     var $nickError = $('#nickError');
     var $users = $('#users');
     var $private_name = $('#private_name');
-    var $messageForm = $('#send-message');
     var $messageBox = $('#message');
     var $chat = $('#chat');
-    var $media = $('#media');
-    var $roombutton = $('#roombutton');
+    
 
 
 
@@ -99,12 +99,12 @@ jQuery(function ($) {
 
             html += '<div class="media">' +
                 '<a class="pull-left" href="#">' +
-                '<img class="media-object img-circle" style="max-height:40px;" src="img/user.png" />' +
+                '<img class="media-object img-circle" style="max-height:40px;" src="img/user_online.png" width="30px" height="30px" />' +
                 '</a>' +
                 '<div class="media-body" >' +
                 '<h5>' +
 
-                '<p class="testi">' + data[i] + '</p>' +
+                '<p class="testi" style = "color:blue;">' + data[i] + '</p>' +
 
                 '</h5>' +
 
@@ -156,12 +156,12 @@ jQuery(function ($) {
         $chat.append(
             '<div class="media">' +
             '<a class="pull-left" href="#">' +
-            '<img class="media-object img-circle " src="img/user.png" />' +
+            '<img class="media-object img-circle " src="img/user.png" width="30px" height="30px" />' +
             '</a>' +
             '<div class="media-body" >' +
             data.msg +
             '<br />' +
-            '<small class="text-muted">' +
+            '<small class="text-muted" style = "color:red;">' +
             data.nick +
             '</small>' +
             '<hr />' +
@@ -174,12 +174,12 @@ jQuery(function ($) {
     socket.on('whisper', function (data) {
         $chat.append('<div class="media">' +
             '<a class="pull-left" href="#">' +
-            '<img class="media-object img-circle " src="img/user.png" />' +
+            '<img class="media-object img-circle " src="img/user.png" width="30px" height="30px"  />' +
             '</a>' +
             '<div class="media-body" >' +
             '<span class="whisper"><b>' + data.msg + '</b></span>' +
             '<br />' +
-            '<small class="text-muted">' +
+            '<small class="text-muted" style = "color:blue;">' +
             data.nick +
             '</small>' +
             '<hr />' +
