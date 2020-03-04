@@ -1,5 +1,5 @@
 /* Pen Title */
-body {
+html body {
     background-color:  #58d68d;
   }
   #chat {
@@ -79,7 +79,7 @@ body {
     line-height: 1;
     text-transform: uppercase;
   }
-  .form-module .toggle .tooltip:before {
+  .form-module .toggle {
     content: '';
     position: absolute;
     top: 5px;
@@ -112,7 +112,7 @@ body {
     margin: 0 0 20px;
     padding: 10px 15px;
     box-sizing: border-box;
-    font-wieght: 400;
+    font-weight: 400;
     -webkit-transition: 0.3s ease;
     transition: 0.3s ease;
   }

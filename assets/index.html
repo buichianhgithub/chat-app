@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>CHAT</title>
-    <link href="css/bootstrap.css" rel="stylesheet" />
+    <title>REAL TIME CHAT</title>
     <link href="css/style.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/script.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
 </head>
+
 <body>
 
     <div id="nickWrap">
         <div class="pen-title">
-           <h1>Real Time Chat Application</h1>  <span> <i class='fa fa-paint-brush'></i> <i class='fa fa-code'></i></span>
+            <h1>Real Time Chat Application</h1> <span> <i class='fa fa-paint-brush'></i> <i
+                    class='fa fa-code'></i></span>
         </div>
         <!-- Form Module-->
         <div class="module form-module">
             <div class="toggle">
-                
+
             </div>
             <div class="form">
                 <h2>What's your nick name?</h2>
                 <p id="nickError" style="color: #d43f3a"></p>
 
                 <form id="setNick">
-                    <input id="nickName" type="text" placeholder="Enter your nickname"/>
+                    <input id="nickName" type="text" placeholder="Enter your nickname" />
                     <button>Login</button>
                 </form>
             </div>
-            
+
         </div>
 
     </div>
@@ -44,107 +47,97 @@
     <div id="contentWrap">
 
         <!-- chat template -->
-<p id="private_name"></p>
+        <p id="private_name"></p>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-sm">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            CHAT HISTORY
+                        </div>
+                        <div class="panel-body">
+                            <ul class="media-list">
 
-        <div class="col-md-8">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                     CHAT HISTORY
-                </div>
-                <div class="panel-body">
-                    <ul class="media-list">
+                                <li class="media">
 
-                        <li class="media">
-
-                            <div class="media-body">
-                                <div id="chat">
+                                    <div class="media-body">
+                                        <div id="chat">
 
 
 
-                                </div>
+                                        </div>
 
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input placeholder="Enter a message:" size="105" id="message"></input>
+                                <span class="input-group-btn">
+                                    <button id="send" class="btn btn-info" type="button">SEND</button>
+                                </span>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input placeholder="Enter a message:" size="105" id="message"></input>
-                        <span class="input-group-btn">
-                                        <button id="send" class="btn btn-info" type="button">SEND</button>
-                                    </span>
+
+                <div id="chatWrap">
+
+                </div>
+
+                <div class="col-sm">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            ONLINE USERS
+                        </div>
+                        <div class="panel-body">
+                            <ul class="media-list">
+
+                                <li class="media">
+
+                                    <div class="media-body">
+                                        <div id="users">
+
+
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            ROOMS
+                        </div>
+                        <div class="panel-body">
+                            <ul class="media-list">
+
+                                <li class="media">
+
+                                    <div class="media-body">
+                                        <div id="rooms"></div>
+                                        <div id="room creation"></div>
+                                        <input type="button" class="btn btn-info" id="roombutton" value="+ Create Group"
+                                            style="margin-bottom: 10px" />
+
+                                        <input id="roomname" style="width:200px; " />
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-
-        <div id="chatWrap">
-        <!--<div id="chat">
-
-
-        </div>-->
-        </div>
-
-        <div class="col-md-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    ONLINE USERS
-                </div>
-                <div class="panel-body">
-                    <ul class="media-list">
-
-                        <li class="media">
-
-                            <div class="media-body">
-                                <div id="users">
-
-
-                                </div>
-
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Group -->
-
-
-
-
-
-
-            <!-- Creating a group -->
-
-
-
-        </div>
-
-        <div class="col-md-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    Grup Chat
-                </div>
-                <div class="panel-body">
-                    <ul class="media-list">
-
-                        <li class="media">
-
-                            <div class="media-body">
-                                <div id="rooms"></div>
-                                <div id="room creation"></div>
-                                <input type="button" class="btn btn-info" id="roombutton" value="+ Create Group"  style="margin-bottom: 10px"/>
-
-                                <input id="roomname" style="width:200px;" />
-
-                            </div>
-                </div>
-                </li>
-                </ul>
-            </div>
-        </div>
-
     </div>
 </body>
-</html>
 
-    
+</html>
