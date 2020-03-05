@@ -1,6 +1,7 @@
 
 var socket = io.connect();
 
+
 socket.on('updatechat', function (username, data) {
     $('#chat').append('<b>' + username + ':</b> ' + data + '<br>');
 });
@@ -9,10 +10,10 @@ socket.on('updaterooms', function (rooms, current_room) {
     $('#rooms').empty();
     $.each(rooms, function (key, value) {
         if (value == current_room) {
-            $('#rooms').append('<div style="width:100%; margin-bottom: 10px;font-size:20px;"   class="btn btn-success">' + value + '</div>');
+            $('#rooms').append('<div style="width:100%; margin-bottom: 10px;font-size:20px; background: #f2990a"   class="btn btn-success">' + value + '</div>');
         }
         else {
-            $('#rooms').append('<div><a href="#"  class="btn btn-success"  style="width:50%; margin-bottom: 10px" onclick="switchRoom(\'' + value + '\')">' + value + '</a></div>');
+            $('#rooms').append('<div><a href="#"  class="btn btn-success"  style="width:100%; margin-bottom: 10px;font-size:20px" onclick="switchRoom(\'' + value + '\')">' + value + '</a></div>');
         }
     });
 });

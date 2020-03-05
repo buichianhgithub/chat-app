@@ -11,7 +11,7 @@ server.listen(3000, () => {
     console.log('listening on port *:3000');
 });
 
-mongoose.connect('mongodb://localhost/realtimechat', { useUnifiedTopology: true, useNewUrlParser: true }, function (err) {
+mongoose.connect('mongodb://localhost/chatdbs', { useUnifiedTopology: true, useNewUrlParser: true }, function (err) {
     if (err) {
         console.log(err);
     } else {
@@ -32,7 +32,7 @@ app.use('/messages', require('./routes/messages'));
 
 users = {};
 
-var rooms = ['room1'];
+var rooms = ['Room 1'];
 
 
 io.sockets.on('connection', function (socket) {
@@ -55,16 +55,16 @@ io.sockets.on('connection', function (socket) {
             updateNicknames();
 
 
-            socket.room = 'room1';
+            socket.room = 'Room 1';
             // add the client's username to the global list
             // send client to room 1
-            socket.join('room1');
+            socket.join('Room 1');
             // echo to client they've connected
             // echo to room 1 that a person has connected to their room
-            socket.emit('updatechat', 'SERVER', 'you have connected to room1');
+            socket.emit('updatechat', 'SERVER', 'you have connected to Room 1');
 
-            socket.broadcast.to('room1').emit('updatechat', 'SERVER', socket.nickname + ' has connected to this room');
-            socket.emit('updaterooms', rooms, 'room1');
+            socket.broadcast.to('Room 1').emit('updatechat', 'SERVER', socket.nickname + ' has connected to this room');
+            socket.emit('updaterooms', rooms, 'Room 1');
         }
         // send client to room 1
 
@@ -115,7 +115,7 @@ io.sockets.on('connection', function (socket) {
 
 
 
-
+    // Listening swich event
     socket.on('switchRoom', function (newroom) {
         socket.leave(socket.room);
         socket.join(newroom);
@@ -129,11 +129,11 @@ io.sockets.on('connection', function (socket) {
     });
 
 
-
+    //whenever user disconnect. print out to chat histories
     socket.on('disconnect', function (data) {
         if (!socket.nickname) return;
         delete users[socket.nickname];
-        //io.sockets.emit('updateusers', usernames);
+        
         // echo globally that this client has left
         socket.broadcast.emit('updatechat', 'SERVER', socket.nickname + ' has disconnected');
         socket.leave(socket.room);
