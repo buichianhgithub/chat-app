@@ -49,8 +49,8 @@
         <!-- chat template -->
         <p id="private_name"></p>
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-sm">
+            <div class="row-wrapper">
+                <div class="col-sm-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             CHAT HISTORY
@@ -73,7 +73,8 @@
                         </div>
                         <div class="panel-footer">
                             <div class="input-group">
-                                <input class= "form-control" placeholder="Enter a message:" size="105" id="message"></input>
+                                <input class="form-control" placeholder="Enter a message:" size="105"
+                                    id="message"></input>
                                 <span class="input-group-btn">
                                     <button id="send" class="btn btn-info" type="button">SEND</button>
                                 </span>
@@ -82,11 +83,7 @@
                     </div>
                 </div>
 
-                <div id="chatWrap">
-
-                </div>
-
-                <div class="col-sm">
+                <div class="columns col-sm-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             ONLINE USERS
@@ -110,7 +107,7 @@
                 </div>
 
 
-                <div class="col-sm">
+                <div class="columns col-sm-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             ROOMS
@@ -121,17 +118,27 @@
                                 <li class="media">
 
                                     <div class="media-body">
+                                        
                                         <div id="rooms"></div>
                                         <div id="room creation"></div>
-                                        <input type="button" class="btn btn-info center-block" id="roombutton" value="+ Create Group"
-                                            style="margin-bottom: 10px" />
 
-                                        <input class="form-control center-block" id="roomname" style="width:200px; " />
+
+
 
                                     </div>
                                 </li>
                             </ul>
                         </div>
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input class="form-control center-block" id="roomname" />
+                                <span class="input-group-btn">
+                                    <input type="button" class="btn btn-info center-block" id="roombutton"
+                                            value="Create" />
+                                </span>
+                            </div>
+                        </div>
+                        
 
                     </div>
                 </div>

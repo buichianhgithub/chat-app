@@ -2,14 +2,17 @@
 html body {
     background-color:  #58d68d;
   }
+
+  
   #chat {
-              height: 500px;
+              height: 70vh;
               margin-bottom: 10px;
               overflow-y: scroll;
   
           }
           #contentWrap{
               display:none;
+              margin-top: 30px;
           }
           #chatWrap {
               float:left;
@@ -22,6 +25,17 @@ html body {
               color: gray;
               font-style: italic;
           }
+  #rooms{
+          height: 70vh;
+          margin-bottom: 10px;
+          overflow-y: scroll;
+  }
+  #users{
+          height: 70vh;
+          margin-bottom: 10px;
+          overflow-y: scroll;
+  }
+  
           
   .pen-title {
     padding: 50px 0;

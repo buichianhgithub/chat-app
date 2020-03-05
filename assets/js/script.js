@@ -3,7 +3,7 @@ var socket = io.connect();
 
 
 socket.on('updatechat', function (username, data) {
-    $('#chat').append('<b>' + username + ':</b> ' + data + '<br>');
+    $('#chat').append('<b>' + username + ' :</b> ' + data + '<br>');
 });
 // listener, whenever the server emits 'updaterooms', this updates the room the client is in
 socket.on('updaterooms', function (rooms, current_room) {

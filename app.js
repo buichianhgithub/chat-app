@@ -61,9 +61,9 @@ io.sockets.on('connection', function (socket) {
             socket.join('Room 1');
             // echo to client they've connected
             // echo to room 1 that a person has connected to their room
-            socket.emit('updatechat', 'SERVER', 'you have connected to Room 1');
+            socket.emit('updatechat', 'ANNOUNCEMENT', 'you have connected to Room 1');
 
-            socket.broadcast.to('Room 1').emit('updatechat', 'SERVER', socket.nickname + ' has connected to this room');
+            socket.broadcast.to('Room 1').emit('updatechat', 'ANNOUNCEMENT', socket.nickname + ' has connected to this room');
             socket.emit('updaterooms', rooms, 'Room 1');
         }
         // send client to room 1
@@ -119,12 +119,12 @@ io.sockets.on('connection', function (socket) {
     socket.on('switchRoom', function (newroom) {
         socket.leave(socket.room);
         socket.join(newroom);
-        socket.emit('updatechat', 'SERVER', 'you have connected to ' + newroom);
+        socket.emit('updatechat', 'ANNOUNCEMENT', 'you have connected to ' + newroom);
         // sent message to OLD room
-        socket.broadcast.to(socket.room).emit('updatechat', 'SERVER', socket.nickname + ' has left this room');
+        socket.broadcast.to(socket.room).emit('updatechat', 'ANNOUNCEMENT', socket.nickname + ' has left this room');
         // update socket session room title
         socket.room = newroom;
-        socket.broadcast.to(newroom).emit('updatechat', 'SERVER', socket.nickname + ' has joined this room');
+        socket.broadcast.to(newroom).emit('updatechat', 'ANNOUNCEMENT', socket.nickname + ' has joined this room');
         socket.emit('updaterooms', rooms, newroom);
     });
 
@@ -135,7 +135,7 @@ io.sockets.on('connection', function (socket) {
         delete users[socket.nickname];
         
         // echo globally that this client has left
-        socket.broadcast.emit('updatechat', 'SERVER', socket.nickname + ' has disconnected');
+        socket.broadcast.emit('updatechat', 'ANNOUNCEMENT', socket.nickname + ' has disconnected');
         socket.leave(socket.room);
 
         updateNicknames();
