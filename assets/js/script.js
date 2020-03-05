@@ -10,10 +10,10 @@ socket.on('updaterooms', function (rooms, current_room) {
     $('#rooms').empty();
     $.each(rooms, function (key, value) {
         if (value == current_room) {
-            $('#rooms').append('<div style="width:100%; margin-bottom: 10px;font-size:20px; background: #f2990a"   class="btn btn-success">' + value + '</div>');
+            $('#rooms').append('<div class="btn btn-success" style="margin-bottom:5px;background:#f2a50a">' + value + '</div>');
         }
         else {
-            $('#rooms').append('<div><a href="#"  class="btn btn-success"  style="width:100%; margin-bottom: 10px;font-size:20px" onclick="switchRoom(\'' + value + '\')">' + value + '</a></div>');
+            $('#rooms').append('<div><a href="#" style="margin-bottom:5px;" class="btn btn-success"  onclick="switchRoom(\'' + value + '\')">' + value + '</a></div>');
         }
     });
 });
