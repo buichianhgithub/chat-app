@@ -1,6 +1,6 @@
 /* Pen Title */
 html body {
-    background-color:  #58d68d;
+    background-color: #5c5c8a;
   }
 
   
@@ -35,12 +35,17 @@ html body {
           margin-bottom: 10px;
           overflow-y: scroll;
   }
+
+  #setNick{
+    margin-top: 60px;
+  }
   
           
   .pen-title {
     padding: 50px 0;
     text-align: center;
     letter-spacing: 2px;
+    color: whitesmoke;
   }
   .pen-title h1 {
     margin: 0 0 20px;
@@ -57,6 +62,10 @@ html body {
     color: #000000;
     font-weight: 600;
     text-decoration: none;
+  }
+
+  .panel-heading{
+    background: #a3a3c2 !important;
   }
   
   /* Form Module */

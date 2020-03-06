@@ -10,10 +10,10 @@ socket.on('updaterooms', function (rooms, current_room) {
     $('#rooms').empty();
     $.each(rooms, function (key, value) {
         if (value == current_room) {
-            $('#rooms').append('<div class="btn btn-success" style="margin-bottom:5px;background:#f2a50a">' + value + '</div>');
+            $('#rooms').append('<div class="btn btn-info" style="margin-bottom:5px;width:100%;background:#9494b8">' + value + '</div>');
         }
         else {
-            $('#rooms').append('<div><a href="#" style="margin-bottom:5px;" class="btn btn-success"  onclick="switchRoom(\'' + value + '\')">' + value + '</a></div>');
+            $('#rooms').append('<div><a class="btn btn-info" href="#" style="margin-bottom:5px;width:100%" class="btn btn-success"  onclick="switchRoom(\'' + value + '\')">' + value + '</a></div>');
         }
     });
 });
@@ -105,7 +105,7 @@ jQuery(function ($) {
                 '<div class="media-body" >' +
                 '<h5>' +
 
-                '<p class="testi" style = "color:blue;">' + data[i] + '</p>' +
+                '<p class="testi" style = "color:#6699ff;">' + data[i] + '</p>' +
 
                 '</h5>' +
 
@@ -162,8 +162,8 @@ jQuery(function ($) {
             '<div class="media-body" >' +
             data.msg +
             '<br />' +
-            '<small class="text-muted" style = "color:red;">' +
-            data.nick +
+            '<small class="text-muted" style = "color:#6699ff;">' +"~~~~"+
+            data.nick +"~~~~"+
             '</small>' +
             '<hr />' +
             '</div>' +
@@ -180,7 +180,7 @@ jQuery(function ($) {
             '<div class="media-body" >' +
             '<span class="whisper"><b>' + data.msg + '</b></span>' +
             '<br />' +
-            '<small class="text-muted" style = "color:blue;">' +
+            '<small class="text-muted" style = "color:#6699ff;">' +
             data.nick +
             '</small>' +
             '<hr />' +
