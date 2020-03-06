@@ -104,10 +104,10 @@ io.sockets.on('connection', function (socket) {
             }
         }
         else {
-            var newMsg = new Chat({ msg: msg, nick: socket.nickname })
+            var newMsg = new Chat({ msg: msg, nick: socket.nickname})
             newMsg.save(function (err) {
                 if (err) throw err;
-                io.sockets.in(socket.room).emit('new message', { msg: msg, nick: socket.nickname })
+                io.sockets.in(socket.room).emit('new message', { msg: msg, nick: socket.nickname})
 
             })
         }

@@ -1,6 +1,6 @@
 /* Pen Title */
 html body {
-    background-color: #5c5c8a;
+    background-color: #483D8B;
   }
 
   
@@ -13,10 +13,6 @@ html body {
           #contentWrap{
               display:none;
               margin-top: 30px;
-          }
-          #chatWrap {
-              float:left;
-              border: 1px #000 solid;
           }
           .error{
               color: red;
@@ -45,7 +41,7 @@ html body {
     padding: 50px 0;
     text-align: center;
     letter-spacing: 2px;
-    color: whitesmoke;
+    color: #F0F8FF;
   }
   .pen-title h1 {
     margin: 0 0 20px;
@@ -65,7 +61,7 @@ html body {
   }
 
   .panel-heading{
-    background: #a3a3c2 !important;
+    background: #8c1aff !important;
   }
   
   /* Form Module */

@@ -10,7 +10,7 @@ socket.on('updaterooms', function (rooms, current_room) {
     $('#rooms').empty();
     $.each(rooms, function (key, value) {
         if (value == current_room) {
-            $('#rooms').append('<div class="btn btn-info" style="margin-bottom:5px;width:100%;background:#9494b8">' + value + '</div>');
+            $('#rooms').append('<div class="btn btn-info" style="margin-bottom:5px;width:100%;background:#483D8B;color:smokewhite">' + value + '</div>');
         }
         else {
             $('#rooms').append('<div><a class="btn btn-info" href="#" style="margin-bottom:5px;width:100%" class="btn btn-success"  onclick="switchRoom(\'' + value + '\')">' + value + '</a></div>');
@@ -100,7 +100,7 @@ jQuery(function ($) {
 
             html += '<div class="media">' +
                 '<a class="pull-left" href="#">' +
-                '<img class="media-object img-circle" style="max-height:40px;" src="img/user_online.png" width="30px" height="30px" />' +
+                '<img class="media-object img-circle" style="max-height:40px;" src="img/user_online.png" width="40px" />' +
                 '</a>' +
                 '<div class="media-body" >' +
                 '<h5>' +
@@ -157,13 +157,14 @@ jQuery(function ($) {
         $chat.append(
             '<div class="media">' +
             '<a class="pull-left" href="#">' +
-            '<img class="media-object img-circle " src="img/user.png" width="30px" height="30px" />' +
+            '<img class="media-object img-circle " src="img/user.png" width="40px" height="40px" />' +
             '</a>' +
             '<div class="media-body" >' +
             data.msg +
             '<br />' +
             '<small class="text-muted" style = "color:#6699ff;">' +"~~~~"+
             data.nick +"~~~~"+
+            '<br />'+
             '</small>' +
             '<hr />' +
             '</div>' +
@@ -175,7 +176,7 @@ jQuery(function ($) {
     socket.on('whisper', function (data) {
         $chat.append('<div class="media">' +
             '<a class="pull-left" href="#">' +
-            '<img class="media-object img-circle " src="img/user.png" width="30px" height="30px"  />' +
+            '<img class="media-object img-circle " src="img/user.png" width="40px" height="40px"  />' +
             '</a>' +
             '<div class="media-body" >' +
             '<span class="whisper"><b>' + data.msg + '</b></span>' +
