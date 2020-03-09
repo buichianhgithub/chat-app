@@ -1,43 +1,42 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-var Product = require('../models/Messages.js');
+var messages = require('../models/Messages.js');
 
-/* GET ALL PRODUCTS */
+/* GET ALL MESSAGES */
 router.get('/', function(req, res, next) {
-  Product.find(function (err, products) {
+  messages.find(function (err, messages) {
     if (err) return next(err);
-    res.json(products);
+    res.json(messages);
   });
 });
 
-/* GET SINGLE PRODUCT BY ID */
+/* GET SINGLE MESSAGE BY ID */
 router.get('/:id', function(req, res, next) {
-  Product.findById(req.params.id, function (err, post) {
+  messages.findById(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-/* SAVE PRODUCT */
+/* SAVE MESSAGE */
 router.post('/', function(req, res, next) {
-  Product.create(req.body, function (err, post) {
+  messages.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-/* UPDATE PRODUCT */
+/* UPDATE MESSAGE */
 router.put('/:id', function(req, res, next) {
-  Product.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  messages.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-/* DELETE PRODUCT */
+/* DELETE MESSAGE */
 router.delete('/:id', function(req, res, next) {
-  Product.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  messages.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });

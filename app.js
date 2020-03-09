@@ -5,19 +5,24 @@ const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const Chat = require('./models/Chat');
+
 
 server.listen(3000, () => {
     console.log('listening on port *:3000');
 });
 
-mongoose.connect('mongodb://localhost/chatdbs', { useUnifiedTopology: true, useNewUrlParser: true }, function (err) {
+// Connect to mongodb atlas with connection string
+mongoose.connect('mongodb+srv://chianhbui:chianhbuidatabase@cluster0-wqgen.mongodb.net/test?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true }, function (err) {
     if (err) {
         console.log(err);
     } else {
         console.log('Connected to mongo db')
     }
 })
+
+
+const Chat = require('./models/Chat');
+const EventLog = require('./models/EventLog');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,7 +33,9 @@ app.get('/', function (req, res) {
 })
 
 // Routes
-app.use('/messages', require('./routes/messages'));
+app.use('/history', require('./routes/messages'));
+app.use('/eventlog', require('./routes/eventlog'));
+
 
 users = {};
 
@@ -37,7 +44,7 @@ var rooms = ['Room 1'];
 
 io.sockets.on('connection', function (socket) {
 
-
+    
 
     Chat.find({}, function (err, docs) {
         if (err) throw err;
@@ -53,6 +60,14 @@ io.sockets.on('connection', function (socket) {
             socket.nickname = data;
             users[socket.nickname] = socket;
             updateNicknames();
+
+            EventLog.create(
+                {name:socket.nickname,status:`${socket.nickname} has connected`},(err,doc)=>{
+                if(err){
+                    console.log(err);
+                }
+            });
+            
 
 
             socket.room = 'Room 1';
@@ -104,10 +119,10 @@ io.sockets.on('connection', function (socket) {
             }
         }
         else {
-            var newMsg = new Chat({ msg: msg, nick: socket.nickname})
+            var newMsg = new Chat({ msg: msg, nick: socket.nickname,group:socket.room})
             newMsg.save(function (err) {
                 if (err) throw err;
-                io.sockets.in(socket.room).emit('new message', { msg: msg, nick: socket.nickname})
+                io.sockets.in(socket.room).emit('new message', { msg: msg, nick: socket.nickname,group:socket.room})
 
             })
         }
@@ -119,6 +134,14 @@ io.sockets.on('connection', function (socket) {
     socket.on('switchRoom', function (newroom) {
         socket.leave(socket.room);
         socket.join(newroom);
+
+        EventLog.create(
+            {name:socket.nickname,status:`${socket.nickname} joined ${newroom}`},(err,doc)=>{
+            if(err){
+                console.log(err);
+            }
+        });
+
         socket.emit('updatechat', 'ANNOUNCEMENT', 'you have connected to ' + newroom);
         // sent message to OLD room
         socket.broadcast.to(socket.room).emit('updatechat', 'ANNOUNCEMENT', socket.nickname + ' has left this room');
@@ -133,6 +156,13 @@ io.sockets.on('connection', function (socket) {
     socket.on('disconnect', function (data) {
         if (!socket.nickname) return;
         delete users[socket.nickname];
+
+        EventLog.create(
+            {name:socket.nickname,status:`${socket.nickname} has disconnected`},(err,doc)=>{
+            if(err){
+                console.log(err);
+            }
+        });
         
         // echo globally that this client has left
         socket.broadcast.emit('updatechat', 'ANNOUNCEMENT', socket.nickname + ' has disconnected');
