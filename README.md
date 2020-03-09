@@ -6,11 +6,11 @@
 
 
 API ENDPOINT: 
-/api/history
-/api/eventlog
+- /api/history
+- /api/eventlog
 
 TEAM:
-Chi Anh Bui 101119448
-Quang Minh Tran 101126888
-Thien Phuoc Dang 101108909
+- Chi Anh Bui 101119448
+- Quang Minh Tran 101126888
+- Thien Phuoc Dang 101108909
 
