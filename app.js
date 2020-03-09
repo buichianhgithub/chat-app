@@ -5,14 +5,17 @@ const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+require('dotenv/config');
 
 
-server.listen(3000, () => {
-    console.log('listening on port *:3000');
-});
 
 // Connect to mongodb atlas with connection string
-mongoose.connect('mongodb+srv://chianhbui:chianhbuidatabase@cluster0-wqgen.mongodb.net/test?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true }, function (err) {
+const uri = process.env.MONGODB_URI;
+const port = process.env.PORT || 5000;
+server.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+});
+mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true }, function (err) {
     if (err) {
         console.log(err);
     } else {
