@@ -36,8 +36,8 @@ app.get('/', function (req, res) {
 })
 
 // Routes
-app.use('/history', require('./routes/messages'));
-app.use('/eventlog', require('./routes/eventlog'));
+app.use('api/history', require('./routes/messages'));
+app.use('api/eventlog', require('./routes/eventlog'));
 
 
 users = {};
