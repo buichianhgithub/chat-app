@@ -2,8 +2,8 @@
 - first step: git clone git@github.com:buichianhgithub/chat-app.git   ||   git clone https://github.com/buichianhgithub/chat-app.git
 - second step: cd chat-app and open IDE environment(visual code studio)
 - third step: type command: npm install & npm install -g dotenv
-- forth step: at root folder create file called .env and create environment variable MONGODB_URI=[your connection string]
-- forth step: npm start
+- forth step: at root folder create file called .env and create environment variable MONGODB_URI=[your connection string] inside that file
+- fifth step: npm start
 
 
 # API ENDPOINT: 
